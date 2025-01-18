@@ -15,6 +15,7 @@ from vnpy_evo.trader.constant import (
     Status,
     Interval
 )
+from vnpy_evo.trader.database import DB_TZ
 from vnpy_evo.trader.gateway import BaseGateway
 from vnpy_evo.trader.object import (
     TickData,
@@ -524,7 +525,7 @@ class Mt5Gateway(BaseGateway):
                 bid_price_1=d["bid"],
                 ask_price_1=d["ask"],
                 volume=d["last_volume"],
-                datetime=datetime.now(),
+                datetime=datetime.now(DB_TZ),
                 gateway_name=self.gateway_name
             )
             if tick.last_price:
