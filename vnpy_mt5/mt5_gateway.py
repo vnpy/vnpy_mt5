@@ -625,13 +625,13 @@ def generate_china_datetime(timestamp: int) -> datetime:
     """Generate China datetime"""
     dt: dict = datetime.strptime(str(timestamp), "%Y.%m.%d %H:%M")
     utc_dt: dict = dt.replace(tzinfo=UTC_TZ)
-    china_tz: dict = CHINA_TZ.normalize(utc_dt.astimezone(CHINA_TZ))
+    china_tz: dict = utc_dt.astimezone(CHINA_TZ)
     return china_tz
 
 
 def generate_utc_datetime(datetime: datetime) -> str:
     """Generate UTC datetime"""
-    utc_tz: dict = UTC_TZ.normalize(datetime.astimezone(UTC_TZ))
+    utc_tz: dict = datetime.astimezone(UTC_TZ)
     utc_tz: dict = utc_tz.replace(tzinfo=None)
     dt: str = utc_tz.isoformat()
     dt: str = dt.replace('T', ' ')
